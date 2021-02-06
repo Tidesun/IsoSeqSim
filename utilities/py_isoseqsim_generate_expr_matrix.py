@@ -20,7 +20,8 @@ def generate_expr_matrix(input_gpd_fl,expression_fl,nb_r,nb_p,output_expr_mtx):
 		[isoform_name,count] = line.split('\t')[0].strip(),line.split('\t')[1].strip()
 		gpd_dict[isoform_name]['count'] = count
 	for gpd in gpd_dict:
-		print >>output_expr_mtx, gpd_dict[gpd]['line'] + "\t" + gpd_dict[gpd]['count']
+		if 'count' in gpd_dict[gpd]:
+			print >>output_expr_mtx, gpd_dict[gpd]['line'] + "\t" + gpd_dict[gpd]['count']
 	# # generate random read count based on negative binomial distribution
 	# nb_list = np.random.negative_binomial(nb_r,nb_p,len(gpd_list)).tolist()
 	# i = 0
