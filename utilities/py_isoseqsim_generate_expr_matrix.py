@@ -13,11 +13,11 @@ def generate_expr_matrix(input_gpd_fl,expression_fl,nb_r,nb_p,output_expr_mtx):
 	# parse gpd file
 	gpd_dict = {}
 	for line in input_gpd_fl:
-		isoform_name = line.split('\t')[1]
+		isoform_name = line.split('\t')[1].strip()
 		gpd_dict[isoform_name] = {'line':line.strip()}
 	nb_list = []
 	for line in expression_fl:
-		[isoform_name,count] = line.split('\t')
+		[isoform_name,count] = line.split('\t')[0].strip(),line.split('\t')[1].strip()
 		gpd_dict[isoform_name]['count'] = count
 	for gpd in gpd_dict:
 		print >>output_expr_mtx, gpd['line'] + "\t" + gpd['count']

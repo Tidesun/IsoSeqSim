@@ -20,7 +20,7 @@ def main():
 		call(cmd2.split())
 		sys.stdout.write("# Step3: generate expression matrix based on Negative Binomial distribution\n")
 		sys.stdout.flush()
-		cmd3 = udir + "/py_isoseqsim_generate_expr_matrix.py -i " + tempdir + "/normal_annotation.gpd" + " -expr "+ args.expr + " -n " + args.nbn + " -p " + args.nbp + " -o " + args.transcript
+		cmd3 = udir + "/py_isoseqsim_generate_expr_matrix.py -i " + tempdir + "/normal_annotation.gpd" + " -expr "+ args.expression + " -n " + args.nbn + " -p " + args.nbp + " -o " + args.transcript
 		call(cmd3.split())
 		sys.stdout.write("# Step4: simulate Iso-Seq reads\n")
 		sys.stdout.flush()
