@@ -20,7 +20,7 @@ def main():
 		call(cmd2.split())
 		sys.stdout.write("# Step3: generate expression matrix based on Negative Binomial distribution\n")
 		sys.stdout.flush()
-		cmd3 = udir + "/py_isoseqsim_generate_expr_matrix.py -i " + tempdir + "/normal_annotation.gpd" + " -n " + args.nbn + " -p " + args.nbp + " -o " + args.transcript
+		cmd3 = udir + "/py_isoseqsim_generate_expr_matrix.py -i " + tempdir + "/normal_annotation.gpd" + " -expr "+ args.expr " -n " + args.nbn + " -p " + args.nbp + " -o " + args.transcript
 		call(cmd3.split())
 		sys.stdout.write("# Step4: simulate Iso-Seq reads\n")
 		sys.stdout.flush()
@@ -139,6 +139,7 @@ def do_inputs():
 	parser.add_argument('-m','--mode',type=str,choices=["normal","fusion","apa","ase","ats"],default="normal",help="Mode choice to perform")
 	parser.add_argument('-g','--genome',type=str,required=True,help="Input: genome sequence file, FASTA format")
 	parser.add_argument('-a','--annotation',type=str,required=True,help="Input: gene annotation file, GTF format")
+	parser.add_argument('-expr','--expression',type=str,required=True,help="Input: expression file")
 	parser.add_argument('-o','--output',type=str,required=True,help="Output: simulated reads file, FASTA format. For more details, see README")
 	parser.add_argument('-t','--transcript',type=str,required=True,help="Output: annotation file to show the simulated transcripts with read counts, modified GenePred table format. For more details, see README")
 	parser.add_argument('--tempdir',type=str,required=True,help="Temporary directory for saving intermediate files. You can delete it after finish running. (e.g., ./temp)")
