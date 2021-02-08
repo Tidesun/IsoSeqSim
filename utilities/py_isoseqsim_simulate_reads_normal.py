@@ -12,7 +12,12 @@ def main(args):
 	output_gpd_fl = args.output
 	dic_iso_seq,iso_list = parse_transcriptome_fa(args.input_fa)
 	p = Pool(processes=args.cpu)
-	csize = 100
+	# csize = 100
+	num_isoforms = sum(1 for _ in input_gpd_fl)
+	input_gpd_fl.seek(0)
+	csize, extra = divmod(num_isoforms, args.cpu)
+	if extra:
+		csize += 1
 	results = p.imap(func=generate_simulated_reads,iterable=generate_tx(input_gpd_fl,dic_iso_seq,iso_list,error_type,error_prob,bp5_list,pro5_list,bp3_list,pro3_list),chunksize=csize)
 	for res in results:
 		if not res: continue
